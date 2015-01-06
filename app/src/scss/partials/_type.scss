@@ -1,0 +1,44 @@
+/* Type
+-------------------------------------------------------------- */
+body {font:$base-font-weight $base-font-size $base-font-family;line-height:$base-line-height;color:$body-text-color;}
+h1, h2, h3, h4, h5, h6 {font-weight: $header-font-weight;}
+address {font-style:normal;margin-bottom:1em;}
+
+a {text-decoration:none}
+hr {width:100%;height:1px;border:0 none;background:$light-grey-color;margin:0 0 24px 0;
+    &.hr-double {height:2px;}
+}
+strong {font-weight:$bold;}
+em {font-style:italic}
+.nl {display:block;}
+.normal {font-style: normal;}
+
+::-moz-selection{ background: #f1f1f1; color:$body-text-color; text-shadow: none; }
+::selection { background:#f1f1f1; color:$body-text-color; text-shadow: none; }
+
+.main {
+    h1 {font:$bold italic 1.8rem $header-font-family;margin-bottom:16px;text-align:left;
+        &.header-welcome {color:$dark-blue-text-color;}
+        &.heading-sub {margin-bottom:0;}
+    }
+    h2 {color:$primary-color;margin-bottom:16px;text-align:left;font:$light italic 1.125rem $header-font-family;}
+    p,
+    ol,
+    ul,
+    blockquote {margin-bottom:24px;text-align:left;
+        p {margin-bottom:0;}
+    }
+    a {color:$primary-color;
+        &:hover {color:$light-blue-color}
+    }
+    p a,
+    span a,
+    li a {word-wrap: break-word;}
+    .list {list-style:disc outside;padding-left:16px;}
+    .mobile-heading {display:block;margin:0 0 16px 0;padding-bottom:4px;color:$primary-color;border-bottom:1px solid $primary-color;font:$bold italic 1rem $header-font-family;@include mediaquery($desktop){display:none;}}
+    p.highlight {color:#767676}
+}
+
+figcaption {font:$bold italic .685rem $base-font-family;color:$dark-text-color;padding:0 $mobile-gutter;
+    @include mediaquery($desktop) {padding:0;}
+}

@@ -1,0 +1,49 @@
+{
+  "version": "0.1.0",
+  "private": true,
+  "name": "craft-beer-edinburgh",
+  "description": "The Best Craft Beer Bars and Off-licences in Edinburgh",
+  "repository": "/",
+  "license": "MIT",
+  "devDependencies": {
+    "karma": "^0.12.16",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-jasmine": "^0.1.5",
+    "protractor": "~1.0.0",
+    "http-server": "^0.6.1",
+    "shelljs": "^0.2.6",
+    "gulp": "^3.8.5",
+    "gulp-autoprefixer": "^0.0.8",
+    "gulp-cache": "^0.2.0",
+    "gulp-changed": "^0.4.0",
+    "gulp-csso": "^0.2.9",
+    "gulp-flatten": "^0.0.2",
+    "gulp-if": "^1.2.1",
+    "gulp-load-plugins": "^0.5.3",
+    "gulp-minify-html": "^0.1.4",
+    "gulp-replace": "^0.4.0",
+    "gulp-ruby-sass": "^0.5.0",
+    "gulp-size": "^0.4.0",
+    "gulp-concat": "^2.3.4",
+    "gulp-uglify": "^0.3.1",
+    "gulp-pixrem": "0.1.1",
+    "gulp-rename" : "^1.2.0",
+    "gulp-watch" : "^0.6.9",
+    "gulp-util" : "^3.0.0",
+    "run-sequence": "^0.3.6"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 8000",
+
+    "pretest": "npm install",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
+
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js",
+  }
+}

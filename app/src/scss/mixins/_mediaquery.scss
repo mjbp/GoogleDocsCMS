@@ -1,0 +1,5 @@
+// mediaquery
+// usage: @include mediaquery(480);
+@mixin mediaquery($bp, $device: 'screen') {
+    @media #{$device} and (min-width: #{$bp}){@content;}
+}

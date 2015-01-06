@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cbeApp">
+<head>
+    <meta charset="utf-8">
+    <title>Craft Beer Edinburgh - The Best Craft Beer Bars and Off-licences in Edinburgh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0, minimal-ui">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <meta property="og:title" content="Craft Beer Edinburgh">
+    <meta property="og:url" content="http://mjbp.github.io/craftbeeredinburgh">
+    <meta property="og:description" content="Craft Beer Edinburgh - The Best Craft Beer Bars and Off-licences in Edinburgh">
+    <meta property="og:site_name" content="Craft Beer Edinburgh">
+    <meta property="og:image" content="/assets/img/icons/icon.72.png">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300|Roboto+Condensed:400|Source+Sans+Pro:300' rel='stylesheet'>
+    <link rel="stylesheet" href="/assets/css/cbe.css">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="shortcut icon" sizes="192x192" href="/assets/img/icons/icon.192.png">
+
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/img/icons/icon.180.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/icon.72.png">
+    <link rel="apple-touch-icon" href="/assets/img/icons/icon.png">
+
+	<link rel="icon" href="/assets/img/icons/icon.196.png" sizes="196x196">
+    <link rel="icon" href="/assets/img/icons/icon.16.png" sizes="16x16">
+
+    <meta name="application-name" content="Craft Beer Edinburgh">
+    <meta name="msapplication-TileColor" content="#ff6600">
+    <script src="/assets/js/angular.js"></script>
+    <script src="/assets/js/angular-route.js"></script>
+    <script src="/assets/js/controllers.js"></script>
+    <script src="/assets/js/app.js"></script>
+</head>
+<body ng-controller="CbeAppController" ng-class="{'filter--on' : toggleFilter}">
+	<div class="container">
+		<header class="banner">
+			<a href="/" class="banner-logo">
+				<h1>
+				<img src="assets/img/icon/cbe-outline.svg" height="35" alt="Craft Beer Edinburgh">
+				<span class="banner-logo-text">Craft Beer Edinburgh</span>
+			</h1>
+			</a>
+			<nav class="nav-primary" ng-show="filterable">
+				<button class="icon-list nav-primary-item">List</button>
+				<button href="/map" class="icon-map nav-primary-item">Map</button>
+				<button href="#filter" ng-click="toggleFilter = !toggleFilter" class="icon-filter nav-primary-item" ng-class="{'nav-primary-item--current' : toggleFilter}">Filter</button>
+			</nav>
+		</header>
+		<div class="filter" id="filter">
+			<input ng-model="stringFilter.name" type="text" class="input-search">
+			<button class="filter-item" ng-click="typeFilterSelect('bar')" ng-class="{'filter-item--current' : typeFilter == 'bar'}">Bars</button>
+			<button class="filter-item" ng-click="typeFilterSelect('shop')" ng-class="{'filter-item--current' : typeFilter == 'shop'}">Shops</button>
+		</div>
+		<ng-view></ng-view>
+	</div>
+</body>
+</html>

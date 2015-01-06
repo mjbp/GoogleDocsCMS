@@ -1,0 +1,13 @@
+		<div class="page-list">
+			<section class="main" role="main">
+				<div class="location" ng-repeat="location in locations | filter:stringFilter | filter:typeFilter">
+					<a href="#/location/{{location.id}}" class="location-summary">
+						<h1 class="location-title">{{location.name}}</h1>
+						<div class="location-description">{{location.description}}</div>
+					</a>
+					<a href="#/map/{{location.id}}" class="location-distance">
+						<span class="location-distance-value">1.2 <span class="location-distance-unit">Miles</span></span>
+					</a>
+				</div>
+			</section>
+		</div>
