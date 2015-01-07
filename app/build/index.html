@@ -8,7 +8,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="YES">
-    <meta name="format-detection" content="telephone=no">
 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="msapplication-tap-highlight" content="no">
@@ -37,25 +36,29 @@
     <meta name="msapplication-TileColor" content="#ff6600">
     <script src="/assets/js/angular.js"></script>
     <script src="/assets/js/angular-route.js"></script>
+    <script src="/assets/js/angular-resource.js"></script>
+    <script src="/assets/js/services/geolocation.js"></script>
+    <script src="/assets/js/services/data.js"></script>
     <script src="/assets/js/controllers.js"></script>
     <script src="/assets/js/app.js"></script>
 </head>
-<body ng-controller="CbeAppController" ng-class="{'filter--on' : toggleFilter}">
-	<div class="container">
+<body ng-controller="CbeAppController" ng-class="{'filter--on' : filterable() && filterOn, 'loaded-data' : loaded.data, 'loaded-geo' : loaded.geo}">
+	<div class="container" ng-class="{'loading' : loading}">
 		<header class="banner">
-			<a href="/" class="banner-logo">
+			<button class="icon-back nav-primary-item" ng-show="!filterable()" ng-click="back()">Back</button>
+			<a href="/#/list" class="banner-logo">
 				<h1>
 				<img src="assets/img/icon/cbe-outline.svg" height="35" alt="Craft Beer Edinburgh">
 				<span class="banner-logo-text">Craft Beer Edinburgh</span>
 			</h1>
 			</a>
-			<nav class="nav-primary" ng-show="filterable">
-				<button class="icon-list nav-primary-item">List</button>
-				<button href="/map" class="icon-map nav-primary-item">Map</button>
-				<button href="#filter" ng-click="toggleFilter = !toggleFilter" class="icon-filter nav-primary-item" ng-class="{'nav-primary-item--current' : toggleFilter}">Filter</button>
+			<nav class="nav-primary">
+				<a href="/#/list" class="icon-list nav-primary-item button" ng-show="!home" ng-class="{'nav-primary-item--current' : navIsActive('/list')}">List</a>
+				<a href="/#/map" class="icon-map nav-primary-item button" ng-class="{'nav-primary-item--current' : navIsActive('/map')}">Map</a>
+				<button href="#filter" ng-show="filterable()" ng-click="toggleFilter()" class="icon-filter nav-primary-item" ng-class="{'nav-primary-item--current' : filterOn}">Filter</button>
 			</nav>
 		</header>
-		<div class="filter" id="filter">
+		<div class="filter" id="filter" ng-show="filterable()">
 			<input ng-model="stringFilter.name" type="text" class="input-search">
 			<button class="filter-item" ng-click="typeFilterSelect('bar')" ng-class="{'filter-item--current' : typeFilter == 'bar'}">Bars</button>
 			<button class="filter-item" ng-click="typeFilterSelect('shop')" ng-class="{'filter-item--current' : typeFilter == 'shop'}">Shops</button>

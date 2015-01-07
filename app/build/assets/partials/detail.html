@@ -1,5 +1,20 @@
 		<div class="page-item">
 			<div class="detail">
-				{{location.name}}
+				<h1 class="detail-title">{{location.name}}</h1>
+				<div class="detail-address">
+					<a href="/#/map/{{location.id}}" class="icon-place">{{location.address}}</a>
+				</div>
+				<div class="detail-telephone">
+					<a href="tel:+44{{location.telephone | removeWhitepace}}" ng-if="location.telephone" class="icon-telephone">0{{location.telephone}}</a>
+				</div>
+				<div ng-if="location.website" class="detail-website">
+					<a href="http://{{location.website}}" class="icon-website" target="_blank">{{location.website}}</a>
+				</div>
+				<div ng-if="location.description" class="detail-description">{{location.description}}</div>
+				<dl ng-if="location.taps" class="detail-taps">
+					Taps:
+					<span ng-if="location.taps.cask" class="detail-cask">Cask: {{location.taps.cask}}</span>
+					<span ng-if="location.taps.keg" class="detail-cask">Keg: {{location.taps.keg}}</span>
+				</div>
 			</div>
 		</div>
