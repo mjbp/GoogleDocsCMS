@@ -34,16 +34,36 @@
 
     <meta name="application-name" content="Craft Beer Edinburgh">
     <meta name="msapplication-TileColor" content="#ff6600">
-    <script src="/assets/js/angular.js"></script>
-    <script src="/assets/js/angular-route.js"></script>
-    <script src="/assets/js/angular-resource.js"></script>
+    <script src="/assets/js/angular/angular.js"></script>
+    <script src="/assets/js/angular/angular-route.js"></script>
+    <script src="/assets/js/angular/angular-resource.js"></script>
+    <script src="/assets/js/filters/index.js"></script>
     <script src="/assets/js/services/geolocation.js"></script>
     <script src="/assets/js/services/data.js"></script>
-    <script src="/assets/js/controllers.js"></script>
+    <script src="/assets/js/services/map.js"></script>
+    <script src="/assets/js/controllers/index.js"></script>
     <script src="/assets/js/app.js"></script>
 </head>
 <body ng-controller="CbeAppController" ng-class="{'filter--on' : filterable() && filterOn, 'loaded-data' : loaded.data, 'loaded-geo' : loaded.geo}">
-	<div class="container" ng-class="{'loading' : loading}">
+	<div class="container" ng-class="{'loading' : !loaded.data}">
+		<svg version="1.1" id="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+		<rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+		<rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+		<rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+	  </svg>
 		<header class="banner">
 			<button class="icon-back nav-primary-item" ng-show="!filterable()" ng-click="back()">Back</button>
 			<a href="/#/list" class="banner-logo">

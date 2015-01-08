@@ -31,7 +31,7 @@ module.factory('Geolocation', ['$q', '$window', function($q, $window) {
      * get one time geolocation
      * @param callback
      */
-    this.getLocation = function(callback) {
+    this.getLocation = function() {
 		if ($window.navigator && $window.navigator.geolocation) {
 			 $window.navigator.geolocation.getCurrentPosition(self.success, self.error, self.config);
 		} else {

@@ -5,16 +5,10 @@ var CBEApp = angular.module('cbeApp', [
 	'ngRoute',
 	'dataService',
 	'geolocation',
+	'map',
+	'cbeFilters',
   	'cbeControllers'
 ]);
-
-//filters
-//refactor into filter file to inject
-CBEApp.filter('removeWhitepace', function () {
-        return function (text) {
-			return text.replace(/\s+/g, '');
-        };
-});
 
 CBEApp.config(['$routeProvider',
   function($routeProvider) {
