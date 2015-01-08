@@ -75,6 +75,10 @@ module.factory('Map', ['$q', '$window', function($q, $window) {
 		for (var i = 0; i < locations.length; i += 1) {
         	self.makeMarker(locations[i]);
 		}
+		
+		if(person !== null) {
+			self.makeMarker(person);
+		}
 		return self;
 	};
 	
@@ -102,12 +106,11 @@ module.factory('Map', ['$q', '$window', function($q, $window) {
 				zoomControl: true
 		 };
 		
-		if (typeof self.map === "undefined") {
-			self.map = new google.maps.Map($window.document.getElementById('map'), mapOptions);
-			self.map.mapTypes.set('CBEMap', new google.maps.StyledMapType(self.config.styles, {name: 'CBEMap'}));
-			self.map.mapTypes.set('CBEMapZoomed', new google.maps.StyledMapType(self.config.stylesZoomed, {name: 'CBEMapZoomed'}));
-			self.map.setMapTypeId('CBEMap');
-		}
+		self.map = new google.maps.Map($window.document.getElementById('map'), mapOptions);
+		self.map.mapTypes.set('CBEMap', new google.maps.StyledMapType(self.config.styles, {name: 'CBEMap'}));
+		self.map.mapTypes.set('CBEMapZoomed', new google.maps.StyledMapType(self.config.stylesZoomed, {name: 'CBEMapZoomed'}));
+		self.map.setMapTypeId('CBEMap');
+		
 		if (self.markers.length > 1) {
 			self.map.fitBounds(boundary);
 		} else {

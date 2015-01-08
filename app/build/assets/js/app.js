@@ -3,6 +3,7 @@
 /* App Module */
 var CBEApp = angular.module('cbeApp', [
 	'ngRoute',
+	'cbeDecorators',
 	'dataService',
 	'geolocation',
 	'map',
@@ -27,7 +28,7 @@ CBEApp.config(['$routeProvider',
       }).
       when('/map/:locationId', {
         templateUrl: '/assets/partials/map.html',
-        controller: 'CbeMapDetailsController'
+        controller: 'CbeMapController'
       }).
       otherwise({
         redirectTo: '/list'

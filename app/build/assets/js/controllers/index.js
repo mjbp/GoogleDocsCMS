@@ -2,7 +2,7 @@
 
 var cbeControllers = angular.module('cbeControllers', [])
 
-	.controller('CbeAppController', ['$scope', '$location', 'Geolocation', '$window', 'DataService', '$q', function($scope, $location, Geolocation, $window, DataService, $q) {
+	.controller('CbeAppController', ['$scope', '$location', 'Geolocation', '$window', 'DataService', 'Map', '$q', function($scope, $location, Geolocation, $window, DataService, Map, $q) {
 		/*
 		 * @roadmap
 		 * - add animations to loading and page transitions
@@ -34,54 +34,63 @@ $q.all([promise1, promise2]).then(function(data){
 		
 		
 		DataService.query(function(locations) {
-			//Get current position
-			Geolocation.getLocation()
-			.then(function (position) {
-				//add distance from current position
-				$scope.person = {
-					latitude: position.coords.latitude,
-					longitude: position.coords.longitude,
-					type: 'person',
-					id: 'Person'
-				};
-				locations.map(function(location) { 
-					location.distance = Geolocation.calculateDistance(position.coords, {'latitude': location.latitude, 'longitude' : location.longitude});
-					return location;
-				});
-
-				//sort by distance
-				locations.sort(function(a,b) { return parseFloat(a.distance) - parseFloat(b.distance); } );
-				$scope.loaded.geo = true;
+			var promises = [],
+				position;
+			
+			promises.push(Geolocation.getLocation());
+			promises.push(Map.asyncGoogleMapAPI());
+			
+			$q.$allSettled(promises).then(function(results) {
+				position = results[0];
+				if (position.coords) {
+					$scope.loaded.geo = true;
+					$scope.person = {
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude,
+						type: 'person',
+						id: 'Person'
+					};
+					//get distance to each location from current position and add to location object
+					locations.map(function(location) { 
+						location.distance = Geolocation.calculateDistance(position.coords, {'latitude': location.latitude, 'longitude' : location.longitude});
+						return location;
+					});
+					//sort by distance, ascending
+					locations.sort(function(a,b) { return parseFloat(a.distance) - parseFloat(b.distance); } );
+				}
+				
+				$scope.locations = locations;
+				
 				$scope.loaded.data = true;
 				
-			}, function(errors) {
-				$scope.loaded.data = true;
+				//move into directive
+				$scope.typeFilterSelect = function(filter) {
+					if (filter === $scope.typeFilter) {
+						$scope.typeFilter = undefined;
+					} else {
+						$scope.typeFilter = filter;
+					}
+				};
+				$scope.toggleFilter = function() {
+					$scope.filterOn = !$scope.filterOn;
+					if (!$scope.filterOn) {
+						$scope.typeFilter = $scope.stringFilter = undefined;
+					}
+				};
+				$scope.filterable = function() {
+					return ($location.path() === '/list' || $location.path() === '/map');
+				};
+				
+				$scope.$broadcast('asyncComplete');
+			}, 
+			function(results) { 
+				console.log('allSettled failed'); 
 			});
-
-			$scope.locations = locations;
-			$scope.typeFilterSelect = function (filter) {
-				if (filter === $scope.typeFilter) {
-					$scope.typeFilter = undefined;
-				} else {
-					$scope.typeFilter = filter;
-				}
-			};
-			$scope.toggleFilter = function () {
-				$scope.filterOn = !$scope.filterOn;
-				if (!$scope.filterOn) {
-					$scope.typeFilter = $scope.stringFilter = undefined;
-				}
-			};
-
-			$scope.filterable = function () {
-				return ($location.path() === '/list' || $location.path() === '/map');
-			};
 		}, function(error) {
 			$scope.loaded.failed = true;
-			//handle here
 		});
 		
-		$scope.navIsActive = function (path) {
+		$scope.navIsActive = function(path) {
 			return (path === $location.path());
 		};
 
@@ -96,44 +105,28 @@ $q.all([promise1, promise2]).then(function(data){
 
 	//Details page
 	.controller('CbeDetailsController', ['$scope', '$routeParams', function($scope, $routeParams){
-		$scope.location = $scope.locations.filter(function (l) { return l.id === $routeParams.locationId; })[0];
+		$scope.location = $scope.locations.filter(function(l) { return l.id === $routeParams.locationId; })[0];
 	}])
 
 	//Map page
-	.controller('CbeMapController', ['$scope', 'Geolocation', 'Map', function($scope, Geolocation, Map) {
-		
-		/* Geolocation stuff is required for current location, what if  they haven't visited another page and geo stuff hasn't loaded yet? 
-		- need to set promise to get it from controller above
-		*/
-		$scope.loaded = {
-			data : true,
-			geo : false,
-			failed : false
-		};
-
-		Map.asyncGoogleMapAPI()
-			.then(function () {
-				Map.init({
-					locations : $scope.locations
-				});
-			}, function(errors) {
-				$scope.loaded.failed = true;
-				console.log(errors);
+	.controller('CbeMapController', ['$scope', 'Geolocation', 'Map', '$routeParams', function($scope, Geolocation, Map, $routeParams) {
+		var markers,
+			loadMap = function(d) {
+				var mapVars = {
+					locations : (!!$routeParams.locationId ? d.filter(function (l) { return l.id === $routeParams.locationId; }).splice(0,1) : d)
+				};
+				if (!!$scope.loaded.geo) {
+					mapVars.person = $scope.person;
+				}
+				Map.init(mapVars);
+			};
+		if($scope.loaded.data) {
+			loadMap($scope.locations);
+		} else {
+			$scope.$on('asyncComplete', function() {
+				loadMap($scope.locations);
 			});
-		
-	}])
-
-	//Map detail page
-	.controller('CbeMapDetailsController', ['$scope','Map', '$routeParams', function($scope, Map, $routeParams){
-		$scope.location = $scope.locations.filter(function (l) { return l.id === $routeParams.locationId; })[0];
-		Map.asyncGoogleMapAPI()
-			.then(function (v) {
-				Map.init({
-					locations : [$scope.location]
-				});
-			}, function(errors) {
-				console.log(errors);
-			});
+		}
 	}]);
 
 /* 

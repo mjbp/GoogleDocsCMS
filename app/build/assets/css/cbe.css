@@ -66,7 +66,7 @@ input[type='text']:focus {outline:none;border-bottom:1px solid rgb(255,255,255);
 
 .location {width:100%;display:flex;opacity:0;flex-direction:row;align-content: stretch; position:relative;border-bottom:1px solid rgba(240, 237, 232, 0.5);cursor:pointer;}
 .loaded-data .location {opacity:1;}
-.location h1 {margin-bottom:.25rem}
+.location h1 {margin-bottom:.25rem;font-weight:300;}
 .location-summary {background:#fcf9f5;display:flex;flex-direction:column;flex-grow:1;padding:16px 9px 16px 9px;}
 .location:nth-child(odd) .location-summary {background:#fffdf9;}
 .location-summary:hover,
