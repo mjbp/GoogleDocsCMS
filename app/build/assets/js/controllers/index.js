@@ -1,3 +1,4 @@
+/*global console, angular*/
 'use strict';
 
 var cbeControllers = angular.module('cbeControllers', [])
@@ -5,6 +6,7 @@ var cbeControllers = angular.module('cbeControllers', [])
 	.controller('CbeAppController', ['$scope', '$location', 'Geolocation', '$window', 'DataService', 'Map', '$q', function($scope, $location, Geolocation, $window, DataService, Map, $q) {
 		/*
 		 * @roadmap
+		 * - trigger overlay when on single location map page
 		 * - add animations to loading and page transitions
 		 * - enable pull down to load/restart geolocation stuff
 		 *
@@ -17,21 +19,8 @@ var cbeControllers = angular.module('cbeControllers', [])
 		};
 
 		$scope.filterOn = false;
-		
-		/*
-		var promise1 = $http({method: 'GET', url: 'a/pi-one-url', cache: 'true'});
-var promise2 = $http({method: 'GET', url: '/api-two-url', cache: 'true'});
-
-$q.all([promise1, promise2]).then(function(data){
-	console.log(data[0], data[1]);
-});
-
-
-
-		* Load map api and geolocation at the same time as multiple promises
-		$q.$allSettled();
-		*/
-		
+		$scope.stringFilter = {name: ''};
+		$scope.typeFilter = '';
 		
 		DataService.query(function(locations) {
 			var promises = [],
@@ -105,7 +94,13 @@ $q.all([promise1, promise2]).then(function(data){
 
 	//Details page
 	.controller('CbeDetailsController', ['$scope', '$routeParams', function($scope, $routeParams){
-		$scope.location = $scope.locations.filter(function(l) { return l.id === $routeParams.locationId; })[0];
+		if($scope.loaded.data) {
+			$scope.location = $scope.locations.filter(function(l) { return l.id === $routeParams.locationId; })[0];
+		} else {
+			$scope.$on('asyncComplete', function() {
+				$scope.location = $scope.locations.filter(function(l) { return l.id === $routeParams.locationId; })[0];
+			});
+		}
 	}])
 
 	//Map page
@@ -113,20 +108,45 @@ $q.all([promise1, promise2]).then(function(data){
 		var markers,
 			loadMap = function(d) {
 				var mapVars = {
-					locations : (!!$routeParams.locationId ? d.filter(function (l) { return l.id === $routeParams.locationId; }).splice(0,1) : d)
+					locations : (!!$routeParams.locationId ? d.filter(function (l) { return l.id === $routeParams.locationId; }).splice(0,1) : d),
+					person: (!!$scope.loaded.geo && $scope.person) || null,
+					trigger: !!$routeParams.locationId
 				};
-				if (!!$scope.loaded.geo) {
-					mapVars.person = $scope.person;
-				}
 				Map.init(mapVars);
+			},
+			initFilter = function(locations) {
+				$scope.$watch('[stringFilter.name, typeFilter]', function(newV, oldV) {
+					var filteredLocations = $scope.locations;
+						
+					if ($scope.stringFilter !== undefined && $scope.stringFilter.name !== '' && $scope.stringFilter.name !== undefined) {
+						filteredLocations = filteredLocations.filter(function(l) {
+							var re = new RegExp($scope.stringFilter.name, 'gi');
+							return l.name.match(re);
+						});
+					}
+					if ($scope.typeFilter !== '' && $scope.typeFilter !== undefined) {
+						filteredLocations = filteredLocations.filter(function(l) {
+							return l.type === $scope.typeFilter;
+						});
+					}
+					
+					Map.refresh({
+						locations : filteredLocations,
+						person: (!!$scope.loaded.geo && $scope.person) || null
+					});
+				});
 			};
 		if($scope.loaded.data) {
 			loadMap($scope.locations);
+			!$routeParams.locationId && initFilter($scope.locations);
+			
 		} else {
 			$scope.$on('asyncComplete', function() {
 				loadMap($scope.locations);
+				!$routeParams.locationId && initFilter($scope.locations);
 			});
 		}
+		
 	}]);
 
 /* 
@@ -136,12 +156,11 @@ UI
 (use shopping bag for shop and schooner for bar on map??)
 
 
+
+
 CODE
 Google maps
-- load asynchronously
-- new service/provider/factory??
 - directive for map
-- include map styling
 
 
 
@@ -155,6 +174,8 @@ For each location - key words, and longer description, former on list, latter on
 
 //whatpub
 Starbar
+Old Chain Pier
+Starbank Inn
 Clarks bar
 Smithies
 Cross and Corner
@@ -162,7 +183,27 @@ Other Place
 Woodland Creatures
 Brass Monkey
 Cask and Still
+Jolly Judge
 
+//shops
+
+
+	{"name":"The Grey Horse",
+   	  "id" : "the-grey-horse",
+		"taps" : {
+			"keg" : "6",
+			"cask" : "5"
+		},
+   		"address": "20 Main Street, Balerno",
+		"website" : "greyhorsebalerno.com",
+		"telephone" : "131 449 2888",
+		"latitude" : "55.883754",
+		"longitude" : "-3.338715",
+		"description" : "Cosy real ale pub in the heart of Balerno",
+   		"type" : "bar"
+	},
+	
+	
 
 Opening hours??
 

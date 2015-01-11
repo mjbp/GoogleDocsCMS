@@ -1,6 +1,6 @@
 		<div class="page-list">
 			<section class="main" role="main">
-				<div class="location" ng-repeat="location in locations | filter:stringFilter | filter:typeFilter">
+				<div class="location" ng-repeat="location in filteredLocations = (locations | filter:stringFilter | filter:typeFilter)">
 					<a href="#/location/{{location.id}}" class="location-summary">
 						<h1 class="location-title">{{location.name}}</h1>
 						<div class="location-description">{{location.description}}</div>
@@ -9,5 +9,6 @@
 						<span class="location-distance-value">{{location.distance}} <span class="location-distance-unit">Miles</span></span>
 					</a>
 				</div>
+				<p class="list-no-results" ng-hide="filteredLocations.length">No results</p>
 			</section>
 		</div>

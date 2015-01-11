@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="24"
+   height="24.000017"
+   id="svg4460"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="bottle.svg">
+  <defs
+     id="defs4462" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="22.627416"
+     inkscape:cx="8.9234603"
+     inkscape:cy="13.231501"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1220"
+     inkscape:window-height="756"
+     inkscape:window-x="7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:snap-bbox="true"
+     inkscape:snap-nodes="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4468"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="1px"
+       spacingy="1px"
+       originx="0px"
+       originy="1.6783325e-05px" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="0,20.000017"
+       id="guide4470" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="4,24.000017"
+       id="guide4472" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="24,13.000017"
+       id="guide4474" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="15,1.6783325e-05"
+       id="guide4476" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="20,23.000017"
+       id="guide4480" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="2,5.0000168"
+       id="guide4482" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="7,2.0000168"
+       id="guide4484" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="13,16.000017"
+       id="guide4486" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="16,13.000017"
+       id="guide4490" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4465">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1028.3622)">
+    <g
+       transform="translate(-552,-45.999983)"
+       style="display:inline"
+       id="alcohol-shop-24"
+       inkscape:label="alcohol-shop-24"
+       inkscape:export-xdpi="89.996864"
+       inkscape:export-ydpi="89.996864">
+      <rect
+         style="opacity:0.5;color:#000000;fill:none;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect22282-1-3"
+         width="24"
+         height="24.000017"
+         x="552"
+         y="1074.3622" />
+      <path
+         id="rect7216"
+         d="m 564,1077.3622 c -0.55401,0 -0.5,0.6273 -0.5,1 l 0,2.5 c 0,0.5 -0.49764,1.2488 -1,1.5 -1,0.5 -1.5,1 -1.5,2 l 0,9 c 0,0.554 0.44599,1 1,1 l 5,0 c 0.55401,0 1,-0.446 1,-1 l 0,-9 c 0,-1 -0.5,-1.5 -1.5,-2 -0.49864,-0.2493 -1,-1 -1,-1.5 l 0,-2.5 c 0,-0.5 0.054,-1 -0.5,-1 z"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99999987999999995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccccccccc" />
+    </g>
+  </g>
+</svg>

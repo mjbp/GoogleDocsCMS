@@ -447,20 +447,6 @@
 		"description" : "Erstwhile home of Edinburgh University’s veterinary college with on-site brewery and good food",
    		"type" : "bar"
 	},
-	{"name":"The Grey Horse",
-   	  "id" : "the-grey-horse",
-		"taps" : {
-			"keg" : "6",
-			"cask" : "5"
-		},
-   		"address": "20 Main Street, Balerno",
-		"website" : "greyhorsebalerno.com",
-		"telephone" : "131 449 2888",
-		"latitude" : "55.883754",
-		"longitude" : "-3.338715",
-		"description" : "Cosy real ale pub in the heart of Balerno",
-   		"type" : "bar"
-	},
 	{"name":"The Regent",
    	  "id" : "the-regent",
 		"taps" : {
@@ -512,8 +498,8 @@
    	  "id" : "cornelius",
 		"website" : "www.corneliusbeers.com",
 		"telephone" : "131 652 2405",
-		"latitude" : "55.95662",
-		"longitude" : "-3.171672",
+		"latitude" : "55.958111",
+		"longitude" : "-3.171825",
 		"description" : "",
 	 	"address" : "18-20 Easter Road, Abbeyhill",
    		"type" : "shop"
