@@ -25,7 +25,7 @@ var deployOptions = {
 
 gulp.task('deploy', function () {
     return gulp.src('demo/**/*')
-        .pipe($.deploy(deployOptions));
+        .pipe($.ghPages(deployOptions));
 });
 
 // Optimize Images
