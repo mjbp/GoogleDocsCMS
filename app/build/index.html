@@ -12,20 +12,10 @@
     <meta property="og:image" content="/assets/img/icons/icon.72.png">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300|Roboto+Condensed:400|Source+Sans+Pro:300' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-
-    <link rel="shortcut icon" sizes="192x192" href="/assets/img/icons/icon.192.png">
-
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/img/icons/icon.180.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/icon.72.png">
-    <link rel="apple-touch-icon" href="/assets/img/icons/icon.png">
-
-	<link rel="icon" href="/assets/img/icons/icon.196.png" sizes="196x196">
-    <link rel="icon" href="/assets/img/icons/icon.16.png" sizes="16x16">
-
+    <link rel="stylesheet" href="assets/css/styles.css">
     <meta name="application-name" content="">
     <meta name="msapplication-TileColor" content="#000">
-    <script src="/assets/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
 </head>
 <body ng-controller="GDAppController" ng-class="{'loaded-data' : loaded.data}">
 	<div class="container" ng-class="{'loading' : !loaded.data}">
@@ -51,14 +41,7 @@
 			<h1 class="banner-heading">Business name</h1>
 			<nav class="nav-primary">
 				<a href="##{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" ng-if="page.heading != 'Bucket'">{{page.heading}}</a>
-				<!--<a href="#{{page.heading|lowercase|hyphenate}}" ng-click="scrollTo(page.heading)" ng-repeat="page in pages" ng-if="page.heading != 'Bucket'" ng-class="{'nav-primary--current' : navIsActive(page.heading)}" menuitem>{{page.heading}}</a>-->
-				<!--
-				<a href="/#/list" class="icon-list nav-primary-item button" ng-show="!home" ng-class="{'nav-primary-item--current' : navIsActive('/list')}">List</a>
-				<a href="/#/map" class="icon-map nav-primary-item button" ng-class="{'nav-primary-item--current' : navIsActive('/map')}">Map</a>
-				<button href="#filter" ng-show="filterable()" ng-click="toggleFilter()" class="icon-filter nav-primary-item" ng-class="{'nav-primary-item--current' : filterOn}">Filter</button>
--->
 			</nav>
-			{{scrollDistance}}
 		</header>
 		<div class="main" role="main" main>
 			<section id="{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" class="page" ng-class="{'page--bucket' : page.heading == 'Bucket', 'page--map' : page.map}" page>
