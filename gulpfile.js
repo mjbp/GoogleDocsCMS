@@ -19,6 +19,11 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+gulp.task('deploy', function () {
+    return gulp.src('demo/**/*')
+        .pipe(deploy(deployOptions));
+});
+
 // Optimize Images
 gulp.task('images', function () {
   return gulp.src('app/src/img/**/*')
