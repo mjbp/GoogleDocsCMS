@@ -19,6 +19,10 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+var deployOptions = {
+    cacheDir: 'demo'
+}
+
 gulp.task('deploy', function () {
     return gulp.src('demo/**/*')
         .pipe(deploy(deployOptions));
