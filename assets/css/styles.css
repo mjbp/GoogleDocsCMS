@@ -1,0 +1,394 @@
+/* Reset
+-------------------------------------------------------------- */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, figure, footer, header,
+hgroup, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  color: black;
+  background: white;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+ins {
+  color: #fc003e;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong, th {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+td {
+  vertical-align: top;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+label, input[type="button"], input[type="submit"], input[type="image"], button {
+  cursor: pointer;
+}
+
+button, input, select, textarea {
+  margin: 0;
+}
+
+button {
+  background: transparent;
+  border: 0 none;
+  padding: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Type
+-------------------------------------------------------------- */
+body {
+  font: 18px "Roboto", sans-serif;
+  line-height: 1.5;
+  color: #616161;
+}
+
+select, input, textarea, button {
+  font: 99% "Roboto", sans-serif;
+}
+
+pre, code, kbd, samp {
+  font-family: monospace, sans-serif;
+}
+
+::-moz-selection {
+  background: #000;
+  color: #fff;
+  text-shadow: none;
+}
+
+::selection {
+  background: #000;
+  color: #fff;
+  text-shadow: none;
+}
+
+a {
+  -webkit-tap-highlight-color: #000;
+  text-decoration: none;
+  text-decoration: none;
+  color: #616161;
+}
+a:hover {
+  color: #9E9E9E;
+}
+
+h1 {
+  font: 700 28px/60px "Roboto Condensed", sans-serif;
+  font: 700 1.75rem/60px "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+}
+
+h2 {
+  font: 32px/1.5 "Roboto", sans-serif;
+  font: 2rem/1.5 "Roboto", sans-serif;
+}
+
+p {
+  font: 24px/1.5 "Roboto", sans-serif;
+  font: 1.5rem/1.5 "Roboto", sans-serif;
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
+}
+
+.page:nth-child(even) h1,
+.page:nth-child(even) h2,
+.page:nth-child(even) p {
+  color: #fff;
+}
+
+/* Grid
+-------------------------------------------------------------- */
+html,
+body {
+  min-height: 100%;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: #fffdf9;
+}
+
+.main {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.loaded-data .main {
+  height: auto;
+  overflow-y: auto;
+}
+
+.page {
+  min-height: -webkit-calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
+  position: relative;
+  overflow: hidden;
+}
+
+.page:nth-child(even) {
+  background: #616161;
+}
+
+.page:nth-child(odd) {
+  background: #fff;
+}
+
+.page--bucket {
+  /* parallax scroll here'*/
+}
+
+.page--map {
+  min-height: 0;
+}
+
+.page--bucket:nth-child(1n),
+.page--map:nth-child(1n) {
+  background: #fff;
+}
+
+.page-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+  text-align: center;
+}
+
+.page-img--map {
+  max-height: 100vmax;
+  max-width: 100vmax;
+}
+
+.page-text {
+  margin: 15% 3% 0 3%;
+  position: relative;
+}
+
+.page--map .page-text {
+  position: absolute;
+  left: 3%;
+  top: 15%;
+}
+
+.page img ~ .page-text {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 4px 8px;
+  padding: .25rem .5rem;
+}
+
+/* Header
+-------------------------------------------------------------- */
+.banner {
+  background: #fff;
+  height: 60px;
+}
+
+.banner-heading {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding-left: 3%;
+}
+
+/* Navigation
+-------------------------------------------------------------- */
+.nav-primary {
+  display: inline-block;
+  width: 80%;
+  float: right;
+  padding-right: 2%;
+  text-align: right;
+  height: 0;
+  overflow: hidden;
+}
+@media screen and (min-width: 540px) {
+  .nav-primary {
+    height: auto;
+  }
+}
+.nav-primary a {
+  line-height: 60px;
+  height: 60px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 3%;
+}
+.nav-primary a.nav-primary--current {
+  border-bottom: 2px solid #616161;
+}
+
+/* Footer
+-------------------------------------------------------------- */
+.contentinfo {
+  text-align: right;
+  height: 60px;
+  padding: 3%;
+}
+
+#loader {
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  margin-left: -12px;
+}
+
+#loader path,
+#loader rect {
+  fill: #131313;
+}
+
+.loading #loader {
+  height: auto;
+}

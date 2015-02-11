@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="GDApp">
+<head>
+    <meta charset="utf-8">
+    <title>Business Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0, minimal-ui">
+
+    <meta property="og:title" content="Small Business">
+    <meta property="og:url" content="http://mjbp.github.io/GDocsCMS">
+    <meta property="og:description" content="Website for Business">
+    <meta property="og:site_name" content="Business Name">
+    <meta property="og:image" content="/assets/img/icons/icon.72.png">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300|Roboto+Condensed:400|Source+Sans+Pro:300' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta name="application-name" content="">
+    <meta name="msapplication-TileColor" content="#000">
+    <script src="assets/js/app.js"></script>
+</head>
+<body ng-controller="GDAppController" ng-class="{'loaded-data' : loaded.data}">
+	<div class="container" ng-class="{'loading' : !loaded.data}">
+		<svg version="1.1" id="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+		<rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+		<rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+		<rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+		  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+		</rect>
+	  </svg>
+		<header class="banner">
+			<h1 class="banner-heading">Business name</h1>
+			<nav class="nav-primary">
+				<a href="##{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" ng-if="page.heading != 'Bucket'">{{page.heading}}</a>
+			</nav>
+		</header>
+		<div class="main" role="main" main>
+			<section id="{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" class="page" ng-class="{'page--bucket' : page.heading == 'Bucket', 'page--map' : page.map}" page>
+				<img ng-if="page.image" ng-src="{{page.image}}" alt="Business Name" class="page-img">
+				<img ng-if="page.map" ng-src="{{page.map}}" alt="Business Name location" class="page-img--map">
+				<div class="page-text">
+					<h1 ng-if="page.heading" ng-show="page.heading != 'Bucket'">{{page.heading}}</h1>
+					<h2 ng-if="page.subheading">{{page.subheading}}</h2>
+					<p ng-if="page.text">{{page.text}}</p>
+					<p ng-if="page.email"><a href="mailto:{{page.email}}">{{page.email}}</a></p>
+				</div>
+			</section>
+			<footer role="contentinfo" class="contentinfo">
+				&copy; Business Name {{date | date:'yyyy'}}
+			</footer>
+		</div>
+	</div>
+</body>
+</html>
