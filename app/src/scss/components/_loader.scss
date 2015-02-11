@@ -1,0 +1,4 @@
+#loader {height:0;overflow:hidden;position:fixed;top:90px;left:50%;margin-left:-12px;}
+#loader path,
+#loader rect {fill: rgb(19, 19, 19);}
+.loading #loader {height:auto;}

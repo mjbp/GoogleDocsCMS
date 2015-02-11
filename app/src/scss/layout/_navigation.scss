@@ -1,0 +1,8 @@
+/* Navigation
+-------------------------------------------------------------- */
+.nav-primary {display:inline-block;width:80%;float:right;padding-right:2%;text-align:right;height:0;overflow:hidden;
+	@include mediaquery('540px') {height:auto}
+	a {line-height:60px;height:60px;display:inline-block;text-align:center;margin-left:3%;
+		&.nav-primary--current {border-bottom:2px solid $dark-color;}
+	}
+}

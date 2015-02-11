@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="cbeApp">
+<html lang="en" ng-app="GDApp">
 <head>
     <meta charset="utf-8">
-    <title>Craft Beer Edinburgh - The Best Craft Beer Bars and Off-licences in Edinburgh</title>
+    <title>Business Name</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0, minimal-ui">
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="YES">
-
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-tap-highlight" content="no">
-
-    <meta property="og:title" content="Craft Beer Edinburgh">
-    <meta property="og:url" content="http://mjbp.github.io/craftbeeredinburgh">
-    <meta property="og:description" content="Craft Beer Edinburgh - The Best Craft Beer Bars and Off-licences in Edinburgh">
-    <meta property="og:site_name" content="Craft Beer Edinburgh">
+    <meta property="og:title" content="Small Business">
+    <meta property="og:url" content="http://mjbp.github.io/GDocsCMS">
+    <meta property="og:description" content="Website for Business">
+    <meta property="og:site_name" content="Business Name">
     <meta property="og:image" content="/assets/img/icons/icon.72.png">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300|Roboto+Condensed:400|Source+Sans+Pro:300' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/cbe.css">
-
-    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 
     <link rel="shortcut icon" sizes="192x192" href="/assets/img/icons/icon.192.png">
 
@@ -32,20 +23,11 @@
 	<link rel="icon" href="/assets/img/icons/icon.196.png" sizes="196x196">
     <link rel="icon" href="/assets/img/icons/icon.16.png" sizes="16x16">
 
-    <meta name="application-name" content="Craft Beer Edinburgh">
-    <meta name="msapplication-TileColor" content="#ff6600">
-    <script src="/assets/js/angular/angular.js"></script>
-    <script src="/assets/js/angular/angular-route.js"></script>
-    <script src="/assets/js/angular/angular-resource.js"></script>
-    <script src="/assets/js/decorators/index.js"></script>
-    <script src="/assets/js/filters/index.js"></script>
-    <script src="/assets/js/services/geolocation.js"></script>
-    <script src="/assets/js/services/data.js"></script>
-    <script src="/assets/js/services/map.js"></script>
-    <script src="/assets/js/controllers/index.js"></script>
+    <meta name="application-name" content="">
+    <meta name="msapplication-TileColor" content="#000">
     <script src="/assets/js/app.js"></script>
 </head>
-<body ng-controller="CbeAppController" ng-class="{'filter--on' : filterable() && filterOn, 'loaded-data' : loaded.data, 'loaded-geo' : loaded.geo}">
+<body ng-controller="GDAppController" ng-class="{'loaded-data' : loaded.data}">
 	<div class="container" ng-class="{'loading' : !loaded.data}">
 		<svg version="1.1" id="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -66,25 +48,33 @@
 		</rect>
 	  </svg>
 		<header class="banner">
-			<button class="icon-back nav-primary-item" ng-show="!filterable()" ng-click="back()">Back</button>
-			<a href="/#/list" class="banner-logo">
-				<h1>
-				<img src="assets/img/icon/cbe-outline.svg" height="35" alt="Craft Beer Edinburgh">
-				<span class="banner-logo-text">Craft Beer Edinburgh</span>
-			</h1>
-			</a>
+			<h1 class="banner-heading">Business name</h1>
 			<nav class="nav-primary">
+				<a href="##{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" ng-if="page.heading != 'Bucket'">{{page.heading}}</a>
+				<!--<a href="#{{page.heading|lowercase|hyphenate}}" ng-click="scrollTo(page.heading)" ng-repeat="page in pages" ng-if="page.heading != 'Bucket'" ng-class="{'nav-primary--current' : navIsActive(page.heading)}" menuitem>{{page.heading}}</a>-->
+				<!--
 				<a href="/#/list" class="icon-list nav-primary-item button" ng-show="!home" ng-class="{'nav-primary-item--current' : navIsActive('/list')}">List</a>
 				<a href="/#/map" class="icon-map nav-primary-item button" ng-class="{'nav-primary-item--current' : navIsActive('/map')}">Map</a>
 				<button href="#filter" ng-show="filterable()" ng-click="toggleFilter()" class="icon-filter nav-primary-item" ng-class="{'nav-primary-item--current' : filterOn}">Filter</button>
+-->
 			</nav>
+			{{scrollDistance}}
 		</header>
-		<div class="filter" id="filter" ng-show="filterable()">
-			<input ng-model="stringFilter.name" type="text" class="input-search">
-			<button class="filter-item" ng-click="typeFilterSelect('bar')" ng-class="{'filter-item--current' : typeFilter == 'bar'}">Bars</button>
-			<button class="filter-item" ng-click="typeFilterSelect('shop')" ng-class="{'filter-item--current' : typeFilter == 'shop'}">Shops</button>
+		<div class="main" role="main" main>
+			<section id="{{page.heading|lowercase|hyphenate}}" ng-repeat="page in pages" class="page" ng-class="{'page--bucket' : page.heading == 'Bucket', 'page--map' : page.map}" page>
+				<img ng-if="page.image" ng-src="{{page.image}}" alt="Business Name" class="page-img">
+				<img ng-if="page.map" ng-src="{{page.map}}" alt="Business Name location" class="page-img--map">
+				<div class="page-text">
+					<h1 ng-if="page.heading" ng-show="page.heading != 'Bucket'">{{page.heading}}</h1>
+					<h2 ng-if="page.subheading">{{page.subheading}}</h2>
+					<p ng-if="page.text">{{page.text}}</p>
+					<p ng-if="page.email"><a href="mailto:{{page.email}}">{{page.email}}</a></p>
+				</div>
+			</section>
+			<footer role="contentinfo" class="contentinfo">
+				&copy; Business Name {{date | date:'yyyy'}}
+			</footer>
 		</div>
-		<ng-view></ng-view>
 	</div>
 </body>
 </html>

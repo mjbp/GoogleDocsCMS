@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
   "private": true,
-  "name": "craft-beer-edinburgh",
-  "description": "The Best Craft Beer Bars and Off-licences in Edinburgh",
+  "name": "GDocsCMS",
+  "description": "Single page angular website for a small business or organisation using Google Docs for CMS ",
   "repository": "/",
   "license": "MIT",
   "devDependencies": {
@@ -12,7 +12,11 @@
     "protractor": "~1.0.0",
     "http-server": "^0.6.1",
     "shelljs": "^0.2.6",
+    "browser-sync": "^1.3.0",
     "gulp": "^3.8.5",
+    "del": "^0.1.1",
+    "psi": "^0.1.1",
+    "require-dir": "^0.1.0",
     "gulp-autoprefixer": "^0.0.8",
     "gulp-cache": "^0.2.0",
     "gulp-changed": "^0.4.0",
@@ -28,14 +32,15 @@
     "gulp-uglify": "^0.3.1",
     "gulp-pixrem": "0.1.1",
     "gulp-rename" : "^1.2.0",
+    "gulp-imagemin": "^0.6.1",
     "gulp-watch" : "^0.6.9",
     "gulp-util" : "^3.0.0",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+	"gulp-sourcemaps": "^1.3.0"
   },
   "scripts": {
     "prestart": "npm install",
     "start": "http-server -a 0.0.0.0 -p 8000",
-
     "pretest": "npm install",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
@@ -44,6 +49,6 @@
     "update-webdriver": "webdriver-manager update",
 
     "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor test/protractor-conf.js",
+    "protractor": "protractor test/protractor-conf.js"
   }
 }

@@ -1,8 +1,0 @@
-// Button
-// USAGE:
-// @extend %button;
-// -------------------------
-%button {display:inline-block;padding:6px 8px;color:#fff;text-transform:uppercase;text-align:center;font:normal 1rem $base-font-family;cursor:pointer;transition: all 0.1s ease-in-out;
-        &:hover,
-        &:focus {background-color:$light-blue-color}
-}

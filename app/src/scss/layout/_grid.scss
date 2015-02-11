@@ -1,0 +1,25 @@
+/* Grid
+-------------------------------------------------------------- */
+html, 
+body{min-height: 100%;}
+
+.container {position:fixed;top:0;bottom:0;left:0;right:0;overflow:hidden;background:#fffdf9;}
+.main {position:absolute;top:60px;bottom:0;right:0;width:100%;overflow:hidden;}
+.loaded-data .main {height:auto;overflow-y:auto;}
+
+.page {min-height:calc(100vh - 60px);position:relative;overflow:hidden;}
+.page:nth-child(even) {background:$dark-color;}
+.page:nth-child(odd) {background:#fff}
+.page--bucket {/* parallax scroll here'*/}
+.page--map {min-height:0;}
+.page--bucket,
+.page--map {
+	&:nth-child(1n) {background:#fff;}
+}
+.page-img {position:absolute;top:0;bottom:0;left:0;right:0;max-height:100%;text-align:center;}
+.page-img--map {max-height:100vmax;max-width:100vmax;}
+.page-text {margin:15% 3% 0 3%;position:relative;}
+.page--map {
+	.page-text {position:absolute;left:$gutter-h;top:15%;}
+}
+.page img ~ .page-text {display:inline-block;background:rgba(255,255,255, 0.75);padding:.25rem .5rem}
